@@ -36,9 +36,9 @@ class ListOrdersInteractor: ListOrdersBusinessLogic, ListOrdersDataStore
         worker = ListOrdersWorker()
         worker?.LoadProducts { products in
             self.products = products
-         
-            let response = ListOrders.LoadProducts.Response(products: products)
-            self.presenter?.PresentProducts(response: response)
         }
+        
+        let response = ListOrders.LoadProducts.Response(products: products)
+        self.presenter?.PresentProducts(response: response)
     }
 }

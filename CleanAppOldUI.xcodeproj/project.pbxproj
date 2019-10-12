@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		753A43DA2352178D00D54DBB /* ListOrdersViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D62352178D00D54DBB /* ListOrdersViewControllerTests.swift */; };
+		753A43DB2352178D00D54DBB /* ListOrdersViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D62352178D00D54DBB /* ListOrdersViewControllerTests.swift */; };
+		753A43DC2352178D00D54DBB /* ListOrdersInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D72352178D00D54DBB /* ListOrdersInteractorTests.swift */; };
+		753A43DD2352178D00D54DBB /* ListOrdersInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D72352178D00D54DBB /* ListOrdersInteractorTests.swift */; };
+		753A43DE2352178D00D54DBB /* ListOrdersWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D82352178D00D54DBB /* ListOrdersWorkerTests.swift */; };
+		753A43DF2352178D00D54DBB /* ListOrdersWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D82352178D00D54DBB /* ListOrdersWorkerTests.swift */; };
+		753A43E02352178D00D54DBB /* ListOrdersPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D92352178D00D54DBB /* ListOrdersPresenterTests.swift */; };
+		753A43E12352178D00D54DBB /* ListOrdersPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A43D92352178D00D54DBB /* ListOrdersPresenterTests.swift */; };
 		753B2998234F83A300C371F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B2997234F83A300C371F0 /* AppDelegate.swift */; };
 		753B299A234F83A300C371F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B2999234F83A300C371F0 /* SceneDelegate.swift */; };
 		753B299C234F83A300C371F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B299B234F83A300C371F0 /* ViewController.swift */; };
@@ -57,6 +65,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		753A43D62352178D00D54DBB /* ListOrdersViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOrdersViewControllerTests.swift; sourceTree = "<group>"; };
+		753A43D72352178D00D54DBB /* ListOrdersInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOrdersInteractorTests.swift; sourceTree = "<group>"; };
+		753A43D82352178D00D54DBB /* ListOrdersWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOrdersWorkerTests.swift; sourceTree = "<group>"; };
+		753A43D92352178D00D54DBB /* ListOrdersPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOrdersPresenterTests.swift; sourceTree = "<group>"; };
 		753B2994234F83A300C371F0 /* CleanAppOldUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanAppOldUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		753B2997234F83A300C371F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		753B2999234F83A300C371F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +157,10 @@
 			isa = PBXGroup;
 			children = (
 				753B29B0234F83A400C371F0 /* Info.plist */,
+				753A43D62352178D00D54DBB /* ListOrdersViewControllerTests.swift */,
+				753A43D72352178D00D54DBB /* ListOrdersInteractorTests.swift */,
+				753A43D82352178D00D54DBB /* ListOrdersWorkerTests.swift */,
+				753A43D92352178D00D54DBB /* ListOrdersPresenterTests.swift */,
 			);
 			path = CleanAppOldUITests;
 			sourceTree = "<group>";
@@ -338,10 +354,14 @@
 				75E5750F234F88B7005BF109 /* ListOrdersModels.swift in Sources */,
 				75E92D242350D22F0093A2EA /* ProductTableViewCell.swift in Sources */,
 				75E57509234F88B7005BF109 /* ListOrdersWorker.swift in Sources */,
+				753A43DC2352178D00D54DBB /* ListOrdersInteractorTests.swift in Sources */,
 				75E57512234F88B7005BF109 /* ListOrdersViewController.swift in Sources */,
 				75E57506234F88B7005BF109 /* ListOrdersPresenter.swift in Sources */,
 				75E5750C234F88B7005BF109 /* ListOrdersRouter.swift in Sources */,
+				753A43E02352178D00D54DBB /* ListOrdersPresenterTests.swift in Sources */,
 				75E57515234F88B7005BF109 /* ListOrdersInteractor.swift in Sources */,
+				753A43DE2352178D00D54DBB /* ListOrdersWorkerTests.swift in Sources */,
+				753A43DA2352178D00D54DBB /* ListOrdersViewControllerTests.swift in Sources */,
 				75E92D1F2350BC5F0093A2EA /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,10 +373,14 @@
 				75E57510234F88B7005BF109 /* ListOrdersModels.swift in Sources */,
 				75E92D252350D22F0093A2EA /* ProductTableViewCell.swift in Sources */,
 				75E5750A234F88B7005BF109 /* ListOrdersWorker.swift in Sources */,
+				753A43DD2352178D00D54DBB /* ListOrdersInteractorTests.swift in Sources */,
 				75E57513234F88B7005BF109 /* ListOrdersViewController.swift in Sources */,
 				75E57507234F88B7005BF109 /* ListOrdersPresenter.swift in Sources */,
 				75E5750D234F88B7005BF109 /* ListOrdersRouter.swift in Sources */,
+				753A43E12352178D00D54DBB /* ListOrdersPresenterTests.swift in Sources */,
 				75E57516234F88B7005BF109 /* ListOrdersInteractor.swift in Sources */,
+				753A43DF2352178D00D54DBB /* ListOrdersWorkerTests.swift in Sources */,
+				753A43DB2352178D00D54DBB /* ListOrdersViewControllerTests.swift in Sources */,
 				75E92D202350BC5F0093A2EA /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

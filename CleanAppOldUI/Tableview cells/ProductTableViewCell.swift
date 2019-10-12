@@ -13,24 +13,28 @@ class ProductTableViewCell : UITableViewCell
 {
     var productNameLabel : UILabel = UILabel()
     var productImage : UIImageView = UIImageView()
-        
+    
     convenience init(productName : String)
     {
         self.init(style: .default, reuseIdentifier: "ProductTableViewCell")
-        
-        backgroundColor = UIColor.red
-
+                
         productNameLabel.text = productName
         productImage.image = UIImage(systemName: "house")
-
-        productImage.backgroundColor = UIColor.green
-        productNameLabel.backgroundColor = UIColor.blue
         
         addSubview(productImage)
         addSubview(productNameLabel)
         
+        productNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        productImage.translatesAutoresizingMaskIntoConstraints = false
+                
         NSLayoutConstraint.activate([
-            // Try out with constraints
+            productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            productImage.topAnchor.constraint(equalTo: topAnchor),
+            productImage.bottomAnchor.constraint(equalTo: bottomAnchor),
+            productImage.widthAnchor.constraint(equalTo: heightAnchor),
+            
+            productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 20),
+            productNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     

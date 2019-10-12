@@ -104,6 +104,10 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         return productList.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell")
         

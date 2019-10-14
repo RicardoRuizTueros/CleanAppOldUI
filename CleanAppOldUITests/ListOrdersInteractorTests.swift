@@ -15,54 +15,72 @@ import XCTest
 
 class ListOrdersInteractorTests: XCTestCase
 {
-  // MARK: Subject under test
-  
-  var sut: ListOrdersInteractor!
-  
-  // MARK: Test lifecycle
-  
-  override func setUp()
-  {
-    super.setUp()
-    setupListOrdersInteractor()
-  }
-  
-  override func tearDown()
-  {
-    super.tearDown()
-  }
-  
-  // MARK: Test setup
-  
-  func setupListOrdersInteractor()
-  {
-    sut = ListOrdersInteractor()
-  }
-  
-  // MARK: Test doubles
-  
-  class ListOrdersPresentationLogicSpy: ListOrdersPresentationLogic
-  {
-    var presentProductsCalled = false
+    // MARK: Subject under test
     
-    func PresentProducts(response: ListOrders.LoadProducts.Response) {
-        presentProductsCalled = true
+    var sut: ListOrdersInteractor!
+    
+    // MARK: Test lifecycle
+    
+    override func setUp()
+    {
+        super.setUp()
+        setupListOrdersInteractor()
     }
-  }
-  
-  // MARK: Tests
-  
-  func testListOrders()
-  {
-    // Given
-    let spy = ListOrdersPresentationLogicSpy()
-    sut.presenter = spy
-    let request = ListOrders.LoadProducts.Request()
     
-    // When
-    sut.LoadProducts(request: request)
+    override func tearDown()
+    {
+        super.tearDown()
+    }
     
-    // Then
-    XCTAssertTrue(spy.presentProductsCalled, "presentProductsCalled(request:) should ask the presenter to format the result")
-  }
+    // MARK: Test setup
+    
+    func setupListOrdersInteractor()
+    {
+        sut = ListOrdersInteractor()
+    }
+    
+    // MARK: Test doubles
+    
+    class ListOrdersPresentationLogicSpy: ListOrdersPresentationLogic
+    {
+        var presentProductsCalled = false
+        
+        func PresentProducts(response: ListOrders.LoadProducts.Response) {
+            presentProductsCalled = true
+        }
+    }
+    
+    class ListOrdersWorkerSpy: ListOrdersWorker
+    {
+        // MARK: Method call expectations
+        var loadProductsCalled = false
+        var dummyProducts = [Product(name: "Product1"), Product(name: "Product2")]
+        
+        // MARK: Spied methods
+        override func LoadProducts (completionHandler: @escaping (([Product]) -> Void))
+        {
+            loadProductsCalled = true
+            completionHandler(dummyProducts)
+        }
+    }
+    
+    // MARK: Tests
+    
+    func testListOrders()
+    {
+        // Given
+        let presenterSpy = ListOrdersPresentationLogicSpy()
+        let workerSpy = ListOrdersWorkerSpy()
+        
+        sut.presenter = presenterSpy
+        sut.worker = workerSpy
+        
+        // When
+        let request = ListOrders.LoadProducts.Request()
+        sut.LoadProducts(request: request)
+        
+        // Then
+        XCTAssertTrue(presenterSpy.presentProductsCalled, "presentProductsCalled(request:) should ask the presenter to format the result")
+        XCTAssertTrue(workerSpy.loadProductsCalled, "loadProductsCalled(request:) should ask the worker for the result")
+    }
 }

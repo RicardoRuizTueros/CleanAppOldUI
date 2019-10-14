@@ -22,7 +22,7 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
     var interactor: ListOrdersBusinessLogic?
     var router: (NSObjectProtocol & ListOrdersRoutingLogic & ListOrdersDataPassing)?
     var productList : [Product] = []
-        
+    
     // MARK: Object lifecycle
     
     convenience init() {
@@ -56,6 +56,9 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+        
+        let appDelegate = UIApplication.shared.delegate
+        appDelegate?.window??.rootViewController = self
     }
     
     // MARK: Routing
@@ -84,7 +87,7 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
     }
     
     // MARK: Do something
-        
+    
     func LoadProducts()
     {
         let request = ListOrders.LoadProducts.Request()
@@ -120,5 +123,10 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         }
         
         return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.dataStore?.selectedProduct = productList[indexPath.row]
+        router?.RouteToProductDetails()
     }
 }

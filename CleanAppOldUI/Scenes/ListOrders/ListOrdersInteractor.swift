@@ -19,26 +19,23 @@ protocol ListOrdersBusinessLogic
 
 protocol ListOrdersDataStore
 {
-    var products : [Product] { get set }
+    var selectedProduct : Product? { get set }
 }
 
 class ListOrdersInteractor: ListOrdersBusinessLogic, ListOrdersDataStore
 {
-    var products: [Product] = []
+    var selectedProduct: Product?
     
     var presenter: ListOrdersPresentationLogic?
-    var worker: ListOrdersWorker?
+    var worker: ListOrdersWorker = ListOrdersWorker()
     
     // MARK: Do something
     
     func LoadProducts(request: ListOrders.LoadProducts.Request)
     {
-        worker = ListOrdersWorker()
-        worker?.LoadProducts { products in
-            self.products = products
+        worker.LoadProducts { products in
+            let response = ListOrders.LoadProducts.Response(products: products)
+            self.presenter?.PresentProducts(response: response)
         }
-        
-        let response = ListOrders.LoadProducts.Response(products: products)
-        self.presenter?.PresentProducts(response: response)
     }
 }

@@ -56,9 +56,6 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
-        
-        let appDelegate = UIApplication.shared.delegate
-        appDelegate?.window??.rootViewController = self
     }
     
     // MARK: Routing

@@ -14,18 +14,24 @@ import UIKit
 
 protocol ListOrdersPresentationLogic
 {
-  func PresentProducts(response: ListOrders.LoadProducts.Response)
+    func PresentProducts(response: ListOrders.LoadProducts.Response)
+    func PresentDeletedProduct(response: ListOrders.DeleteProduct.Response)
 }
 
 class ListOrdersPresenter: ListOrdersPresentationLogic
 {
-  weak var viewController: ListOrdersDisplayLogic?
-  
-  // MARK: Do something
-  
-  func PresentProducts(response: ListOrders.LoadProducts.Response)
-  {
-    let viewModel = ListOrders.LoadProducts.ViewModel(products: response.products)
-    viewController?.DisplayProducts(viewModel: viewModel)
-  }
+    weak var viewController: ListOrdersDisplayLogic?
+    
+    // MARK: Do something
+    
+    func PresentProducts(response: ListOrders.LoadProducts.Response)
+    {
+        let viewModel = ListOrders.LoadProducts.ViewModel(products: response.products)
+        viewController?.DisplayProducts(viewModel: viewModel)
+    }
+    
+    func PresentDeletedProduct(response: ListOrders.DeleteProduct.Response) {
+        let viewModel = ListOrders.DeleteProduct.ViewModel(productIndex: response.productIndex)
+        viewController?.DisplayDeletedProduct(viewModel: viewModel)
+    }
 }

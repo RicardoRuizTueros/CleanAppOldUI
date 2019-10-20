@@ -15,6 +15,7 @@ import UIKit
 protocol ListOrdersDisplayLogic: class
 {
     func DisplayProducts(viewModel: ListOrders.LoadProducts.ViewModel)
+    func DisplayDeletedProduct(viewModel: ListOrders.DeleteProduct.ViewModel)
 }
 
 class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
@@ -78,7 +79,7 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.allowsMultipleSelectionDuringEditing = false
         
         LoadProducts()
     }
@@ -99,6 +100,13 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         
         tableView.reloadData()
     }
+    
+    func DisplayDeletedProduct(viewModel: ListOrders.DeleteProduct.ViewModel)
+    {
+        productList.remove(at: viewModel.productIndex)
+        tableView.deleteRows(at: [IndexPath(row: viewModel.productIndex, section: 0)], with: .left)
+    }
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -125,5 +133,16 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         router?.dataStore?.selectedProduct = productList[indexPath.row]
         router?.RouteToProductDetails()
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            let deleteProductRequest = ListOrders.DeleteProduct.Request(productIndex: indexPath.row)
+            interactor?.DeleteProduct(request: deleteProductRequest)
+        }
     }
 }

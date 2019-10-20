@@ -33,4 +33,22 @@ enum ListOrders
             var products : [Product] = []
         }
     }
+    
+    enum DeleteProduct
+    {
+        struct Request
+        {
+            var productIndex : Int
+        }
+        
+        struct Response
+        {
+            var productIndex : Int
+        }
+        
+        struct ViewModel
+        {
+            var productIndex : Int
+        }
+    }
 }

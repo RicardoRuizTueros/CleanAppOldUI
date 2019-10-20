@@ -15,6 +15,7 @@ import UIKit
 protocol ListOrdersBusinessLogic
 {
     func LoadProducts(request: ListOrders.LoadProducts.Request)
+    func DeleteProduct(request: ListOrders.DeleteProduct.Request)
 }
 
 protocol ListOrdersDataStore
@@ -31,11 +32,20 @@ class ListOrdersInteractor: ListOrdersBusinessLogic, ListOrdersDataStore
     
     // MARK: Do something
     
+    
     func LoadProducts(request: ListOrders.LoadProducts.Request)
     {
         worker.LoadProducts { products in
             let response = ListOrders.LoadProducts.Response(products: products)
             self.presenter?.PresentProducts(response: response)
+        }
+    }
+    
+    func DeleteProduct(request: ListOrders.DeleteProduct.Request)
+    {
+        worker.DeleteProduct { () in
+            let response = ListOrders.DeleteProduct.Response(productIndex: request.productIndex)
+            self.presenter?.PresentDeletedProduct(response: response)
         }
     }
 }

@@ -14,13 +14,15 @@ import UIKit
 
 protocol ProductDetailsDisplayLogic: class
 {
-    func displaySomething(viewModel: ProductDetails.Something.ViewModel)
+//    func displaySomething(viewModel: ProductDetails.Something.ViewModel)
 }
 
 class ProductDetailsViewController: UIViewController, ProductDetailsDisplayLogic
 {
     var interactor: ProductDetailsBusinessLogic?
     var router: (NSObjectProtocol & ProductDetailsRoutingLogic & ProductDetailsDataPassing)?
+    
+    var productInfo = UILabel()
     
     // MARK: Object lifecycle
     
@@ -74,21 +76,36 @@ class ProductDetailsViewController: UIViewController, ProductDetailsDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
+        
+        view.backgroundColor = .white
+//        doSomething()
+    }
+    
+    func ShowProductInfo()
+    {
+        productInfo.text = router?.dataStore?.product.name
+        
+        view.addSubview(productInfo)
+        productInfo.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            productInfo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            productInfo.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-        let request = ProductDetails.Something.Request()
-        interactor?.doSomething(request: request)
-    }
-    
-    func displaySomething(viewModel: ProductDetails.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
-    }
+//    func doSomething()
+//    {
+//        let request = ProductDetails.Something.Request()
+//        interactor?.doSomething(request: request)
+//    }
+//
+//    func displaySomething(viewModel: ProductDetails.Something.ViewModel)
+//    {
+//        //nameTextField.text = viewModel.name
+//    }
 }

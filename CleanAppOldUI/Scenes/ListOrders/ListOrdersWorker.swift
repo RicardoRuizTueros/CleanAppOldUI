@@ -20,7 +20,16 @@ class ListOrdersWorker
         let products : [Product] = [Product(name: "Product1"), Product(name: "Product2")]
         
         DispatchQueue.main.async {
+            // Server call for retrieving products
             completionHandler(products)
+        }
+    }
+    
+    func DeleteProduct(completionHandler: @escaping (() -> Void))
+    {
+        DispatchQueue.main.async {
+            // Server call for deleting product
+            completionHandler()
         }
     }
 }

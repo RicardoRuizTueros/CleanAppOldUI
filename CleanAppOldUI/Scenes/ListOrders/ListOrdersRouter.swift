@@ -58,6 +58,7 @@ class ListOrdersRouter: NSObject, ListOrdersRoutingLogic, ListOrdersDataPassing
     func NavigateToProductDetails(source: ListOrdersViewController, destination: ProductDetailsViewController)
     {
         source.navigationController?.pushViewController(destination, animated: true)
+        destination.ShowProductInfo()
     }
     
     // MARK: Passing data

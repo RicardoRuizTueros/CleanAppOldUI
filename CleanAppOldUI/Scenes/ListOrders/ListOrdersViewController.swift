@@ -15,6 +15,7 @@ import UIKit
 protocol ListOrdersDisplayLogic: class
 {
     func DisplayProducts(viewModel: ListOrders.LoadProducts.ViewModel)
+    func DisplayNewProduct(viewModel: ListOrders.AddProduct.ViewModel)
     func DisplayDeletedProduct(viewModel: ListOrders.DeleteProduct.ViewModel)
 }
 
@@ -23,6 +24,8 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
     var interactor: ListOrdersBusinessLogic?
     var router: (NSObjectProtocol & ListOrdersRoutingLogic & ListOrdersDataPassing)?
     var productList : [Product] = []
+    
+    var addProductButton = UIButton()
     
     // MARK: Object lifecycle
     
@@ -36,9 +39,8 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setup()
     }
     
@@ -81,6 +83,20 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         tableView.dataSource = self
         tableView.allowsMultipleSelectionDuringEditing = false
         
+        addProductButton.setTitle("Add product", for: .normal)
+        addProductButton.backgroundColor = .blue
+        
+        tableView.addSubview(addProductButton)
+        addProductButton.translatesAutoresizingMaskIntoConstraints = false;
+                
+        addProductButton.leftAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.leftAnchor).isActive = true
+        addProductButton.rightAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.rightAnchor).isActive = true
+        addProductButton.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        addProductButton.widthAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.widthAnchor).isActive = true
+        addProductButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        addProductButton.addTarget(self, action: #selector(AddProduct), for: .touchUpInside)
+        
         LoadProducts()
     }
     
@@ -90,6 +106,12 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
     {
         let request = ListOrders.LoadProducts.Request()
         interactor?.LoadProducts(request: request)
+    }
+    
+    @objc func AddProduct()
+    {
+        let request = ListOrders.AddProduct.Request()
+        interactor?.AddProduct(request: request)
     }
     
     // MARK: Tableview delegates
@@ -106,7 +128,14 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
         productList.remove(at: viewModel.productIndex)
         tableView.deleteRows(at: [IndexPath(row: viewModel.productIndex, section: 0)], with: .left)
     }
+    
+    func DisplayNewProduct(viewModel: ListOrders.AddProduct.ViewModel)
+    {
+        productList.append(viewModel.newProduct)
+        tableView.insertRows(at: [IndexPath(row: productList.count - 1, section: 0)], with: .right)
+    }
 
+    // MARK: Delegate
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

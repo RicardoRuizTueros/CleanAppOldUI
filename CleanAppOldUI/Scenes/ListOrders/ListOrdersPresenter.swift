@@ -16,6 +16,7 @@ protocol ListOrdersPresentationLogic
 {
     func PresentProducts(response: ListOrders.LoadProducts.Response)
     func PresentDeletedProduct(response: ListOrders.DeleteProduct.Response)
+    func PresentAddedProduct(response: ListOrders.AddProduct.Response)
 }
 
 class ListOrdersPresenter: ListOrdersPresentationLogic
@@ -33,5 +34,10 @@ class ListOrdersPresenter: ListOrdersPresentationLogic
     func PresentDeletedProduct(response: ListOrders.DeleteProduct.Response) {
         let viewModel = ListOrders.DeleteProduct.ViewModel(productIndex: response.productIndex)
         viewController?.DisplayDeletedProduct(viewModel: viewModel)
+    }
+    
+    func PresentAddedProduct(response: ListOrders.AddProduct.Response) {
+        let viewModel = ListOrders.AddProduct.ViewModel(newProduct: response.newProduct)
+        viewController?.DisplayNewProduct(viewModel: viewModel)
     }
 }

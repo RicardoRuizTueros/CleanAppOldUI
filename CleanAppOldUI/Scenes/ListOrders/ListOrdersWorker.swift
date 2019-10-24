@@ -32,4 +32,13 @@ class ListOrdersWorker
             completionHandler()
         }
     }
+    
+    func AddProduct(completionHandler: @escaping ((Product) -> Void))
+    {
+        DispatchQueue.main.async {
+            // Server call for adding product
+            let product = Product(name: "New product")
+            completionHandler(product)
+        }
+    }
 }

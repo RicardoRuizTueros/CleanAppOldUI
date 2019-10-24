@@ -16,6 +16,7 @@ protocol ListOrdersBusinessLogic
 {
     func LoadProducts(request: ListOrders.LoadProducts.Request)
     func DeleteProduct(request: ListOrders.DeleteProduct.Request)
+    func AddProduct(request: ListOrders.AddProduct.Request)
 }
 
 protocol ListOrdersDataStore
@@ -38,6 +39,14 @@ class ListOrdersInteractor: ListOrdersBusinessLogic, ListOrdersDataStore
         worker.LoadProducts { products in
             let response = ListOrders.LoadProducts.Response(products: products)
             self.presenter?.PresentProducts(response: response)
+        }
+    }
+    
+    func AddProduct(request: ListOrders.AddProduct.Request)
+    {
+        worker.AddProduct{ product in
+            let response = ListOrders.AddProduct.Response(newProduct: product)
+            self.presenter?.PresentAddedProduct(response: response)
         }
     }
     

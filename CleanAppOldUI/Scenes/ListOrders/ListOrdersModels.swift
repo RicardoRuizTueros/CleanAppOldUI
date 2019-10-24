@@ -51,4 +51,22 @@ enum ListOrders
             var productIndex : Int
         }
     }
+    
+    enum AddProduct
+    {
+        struct Request
+        {
+
+        }
+        
+        struct Response
+        {
+            var newProduct : Product
+        }
+        
+        struct ViewModel
+        {
+            var newProduct : Product
+        }
+    }
 }

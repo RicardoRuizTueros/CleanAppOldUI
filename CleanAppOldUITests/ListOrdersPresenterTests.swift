@@ -44,9 +44,19 @@ class ListOrdersPresenterTests: XCTestCase
   class ListOrdersDisplayLogicSpy: ListOrdersDisplayLogic
   {
     var displayProductsCalled = false
+    var displayNewProductCalled = false
+    var displayDeletedProductCalled = false
     
     func DisplayProducts(viewModel: ListOrders.LoadProducts.ViewModel) {
         displayProductsCalled = true
+    }
+    
+    func DisplayNewProduct(viewModel: ListOrders.AddProduct.ViewModel) {
+        displayNewProductCalled = true
+    }
+    
+    func DisplayDeletedProduct(viewModel: ListOrders.DeleteProduct.ViewModel) {
+        displayDeletedProductCalled = true
     }
   }
   

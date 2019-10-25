@@ -44,9 +44,19 @@ class ListOrdersInteractorTests: XCTestCase
     class ListOrdersPresentationLogicSpy: ListOrdersPresentationLogic
     {
         var presentProductsCalled = false
+        var presentProductsDeleted = false
+        var presentAddedProduct = false
         
         func PresentProducts(response: ListOrders.LoadProducts.Response) {
             presentProductsCalled = true
+        }
+        
+        func PresentDeletedProduct(response: ListOrders.DeleteProduct.Response) {
+            presentProductsDeleted = true
+        }
+        
+        func PresentAddedProduct(response: ListOrders.AddProduct.Response) {
+            presentAddedProduct = true
         }
     }
     

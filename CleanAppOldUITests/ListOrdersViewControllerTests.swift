@@ -52,10 +52,21 @@ class ListOrdersViewControllerTests: XCTestCase
   
   class ListOrdersBusinessLogicSpy: ListOrdersBusinessLogic
   {
+    
     var loadProductsCalled = false
+    var deleteProductsCalled = false
+    var addProductsCalled = false
     
     func LoadProducts(request: ListOrders.LoadProducts.Request) {
         loadProductsCalled = true
+    }
+    
+    func DeleteProduct(request: ListOrders.DeleteProduct.Request) {
+        deleteProductsCalled = true
+    }
+    
+    func AddProduct(request: ListOrders.AddProduct.Request) {
+        addProductsCalled = true
     }
    
   }
